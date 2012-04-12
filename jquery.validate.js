@@ -1,6 +1,8 @@
 /**
- * Validation jQuery Plugin
- * Copyright 2011 Tom Rodenberg
+ * jQuery Valdiate Plugin
+ * Copyright 2012 Tom Rodenberg
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
  */
 (function($){
 
