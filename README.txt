@@ -51,21 +51,21 @@ Sample usage:
       },
 
       address1: {
-        set: function(val) {currentProfile.Address.Address1 = val;},
-        get: function() {return currentProfile.Address.Address1;},
+        set: function(val) {currentProfile.Address1 = val;},
+        get: function() {return currentProfile.Address1;},
         validators: $.validate.required,
         invalidText: text.AddressInvalid
       },
 
       address2: {
-        set: function(val) {currentProfile.Address.Address2 = val;},
-        get: function() {return currentProfile.Address.Address2;},
+        set: function(val) {currentProfile.Address2 = val;},
+        get: function() {return currentProfile.Address2;},
         optional: true
       },
 
       country: {
-        set: function(val) {currentProfile.Address.Country = val;},
-        get: function() {return currentProfile.Address.Country;},
+        set: function(val) {currentProfile.Country = val;},
+        get: function() {return currentProfile.Country;},
         validators: [$.validate.required, function() {
             var country = $('#country').val();
             if(country && $.trim(country) != '' && country != '--') {
@@ -77,30 +77,30 @@ Sample usage:
       },
 
       zip: {
-        set: function(val) {currentProfile.Address.Zip = val;},
-        get: function() {return currentProfile.Address.Zip;},
+        set: function(val) {currentProfile.Zip = val;},
+        get: function() {return currentProfile.Zip;},
         validators: $.validate.required,
         invalidText: text.ZipInvalid
       },
 
       city: {
-        set: function(val) {currentProfile.Address.City = val;},
-        get: function() {return currentProfile.Address.City;},
+        set: function(val) {currentProfile.City = val;},
+        get: function() {return currentProfile.City;},
         validators: $.validate.required,
         invalidText: text.CityInvalid
       },
 
       state: {
         set: function(val) {
-          if(currentProfile.Address.Country == "US") {
-            currentProfile.Address.State = val;
+          if(currentProfile.Country == "US") {
+            currentProfile.State = val;
           }
         },
         get: function() {
-          return currentProfile.Address.State;
+          return currentProfile.State;
         },
         validators: function(obj) {
-          if(currentProfile.Address.Country == "US") {
+          if(currentProfile.Country == "US") {
             return $.validate.required(obj);
           }
           return true;
@@ -118,28 +118,7 @@ Sample custom validator functions:
    * Validates password match
    */
   var validPassword =  function() {
-    // If a profile is created, do not check password fields
-    if(currentProfile && !Util.Empty(currentProfile.ProfileId)) {
-      return true;
-    }
-
     var a = $('#password').val();
     var b = $('#password2').val();
     return a == b;
-  }
-
-  /**
-   * Validates the mobile and home phone fields.
-   * Only one or the other is required.
-   */
-  var validPhone = function() {
-    var cell_phone = $.trim($('#cell_phone').val());
-    if(!Util.Empty(cell_phone)) {
-      return true;
-    }
-    var home_phone = $.trim($('#home_phone').val());
-    if(!Util.Empty(home_phone)) {
-      return true;
-    }
-    return false;
   }
